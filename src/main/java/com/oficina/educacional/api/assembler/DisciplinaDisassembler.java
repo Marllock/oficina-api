@@ -1,8 +1,6 @@
 package com.oficina.educacional.api.assembler;
 
-import com.oficina.educacional.api.model.CursoDTO;
 import com.oficina.educacional.api.model.DisciplinaDTO;
-import com.oficina.educacional.domain.model.Curso;
 import com.oficina.educacional.domain.model.Disciplina;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,19 +1,18 @@
 package com.oficina.educacional.api.utils;
 
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.Mock;
-import org.mockito.junit.jupiter.MockitoExtension;
-import static org.junit.jupiter.api.Assertions.*;
+import org.springframework.beans.factory.annotation.Autowired;
 
-@ExtendWith(MockitoExtension.class)
+import static org.junit.jupiter.api.Assertions.*;
+import com.oficina.educacional.api.utils.StringUtils;
+
+import static org.assertj.core.api.Assertions.*;
 class StringUtilsTest {
 
-    @Mock
-    private StringUtils stringUtils;
 
     @Test
     public void shouldNormalizeString() {
+        StringUtils stringUtils = new StringUtils();
         String messageToNormalize = "Ação de Graças";
         String result = stringUtils.normalizeString(messageToNormalize);
 

@@ -1,14 +1,15 @@
 package com.oficina.educacional.api.controller;
 
-import com.oficina.educacional.api.assembler.CursoAssembler;
+import com.oficina.educacional.api.assembler.CourseAssembler;
 import com.oficina.educacional.api.model.CursoDTO;
-import com.oficina.educacional.api.model.input.CursoInputDTO;
-import com.oficina.educacional.domain.model.Curso;
-import com.oficina.educacional.domain.service.CursoService;
+import com.oficina.educacional.api.model.input.CourseInputDTO;
+import com.oficina.educacional.api.model.input.CourseUpdateInputDTO;
+import com.oficina.educacional.domain.model.Course;
+import com.oficina.educacional.domain.service.CourseService;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -18,16 +19,32 @@ import javax.validation.Valid;
 public class CursoController {
 
     @Autowired
-    private CursoService cursoService;
+    private CourseService courseService;
 
     @Autowired
-    private CursoAssembler cursoAssembler;
+    private CourseAssembler courseAssembler;
 
-//    @ApiOperation(value = "Cria curso")
-//    @ResponseStatus(HttpStatus.CREATED)
-//    @GetMapping("")
-//    public CursoDTO createCourse(@RequestBody @Valid CursoInputDTO cursoInputDTO) {
-//        Curso curso = cursoService.createCurso(cursoInputDTO);
-//        return cursoAssembler.toModel(curso);
-//    }
+    @ApiOperation(value = "Cria curso")
+    @ResponseStatus(HttpStatus.CREATED)
+    @PostMapping("")
+    public CursoDTO createCourse(@RequestBody @Valid CourseInputDTO courseInputDTO) {
+        Course course = courseService.create(courseInputDTO);
+        return courseAssembler.toModel(course);
+    }
+
+    @ApiOperation(value = "Atualiza curso")
+    @PutMapping("/{courseId}")
+    public CursoDTO updateCourse(@PathVariable long courseId, @RequestBody @Valid CourseUpdateInputDTO courseUpdateInputDTO) {
+
+        Course course = courseService.update(courseUpdateInputDTO, courseId);
+        return courseAssembler.toModel(course);
+    }
+
+    @ApiOperation(value = "Lista todos os curso paginado")
+    @GetMapping("")
+    public Page<CursoDTO> listAllCourses(@RequestParam int page, @RequestParam int perPage,
+                                         @RequestParam Boolean isActive, @RequestParam String searchName) {
+        Page<Course> courses = courseService.listCourses(page, perPage, isActive, searchName);
+        return courseAssembler.toModel(courses);
+    }
 }
