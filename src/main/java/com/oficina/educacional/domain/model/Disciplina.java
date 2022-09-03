@@ -28,5 +28,5 @@ public class Disciplina {
 
     @ManyToOne
     @JoinColumn(name = "curso_id", nullable = false)
-    private Curso cursoId;
+    private Course cursoId;
 }
