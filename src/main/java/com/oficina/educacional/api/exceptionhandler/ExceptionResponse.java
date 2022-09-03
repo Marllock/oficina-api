@@ -12,14 +12,8 @@ import lombok.Getter;
 @Getter
 @Builder
 public class ExceptionResponse {
-    private String message;
     private Integer status;
-    private List<Field> fields;
-
-    @Getter
-    @Builder
-    public static class Field {
-        private String name;
-        private String message;
-    }
+    private String type;
+    private String title;
+    private String detail;
 }

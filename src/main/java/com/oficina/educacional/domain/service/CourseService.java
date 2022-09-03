@@ -4,10 +4,14 @@ import com.oficina.educacional.api.assembler.CourseAssembler;
 import com.oficina.educacional.api.model.input.CourseInputDTO;
 import com.oficina.educacional.api.model.input.CourseUpdateInputDTO;
 import com.oficina.educacional.api.utils.StringUtils;
+import com.oficina.educacional.domain.exception.EmptyResultException;
+import com.oficina.educacional.domain.exception.IntegrityException;
 import com.oficina.educacional.domain.model.Course;
 import com.oficina.educacional.domain.repository.CourseRepository;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -38,12 +42,19 @@ public class CourseService {
 
     @Transactional
     public Course create(@Valid CourseInputDTO courseInputDTO) {
+        try {
+
         Course course = new Course();
         BeanUtils.copyProperties(courseInputDTO, course);
         course.setCourseIsActive(true);
         course.setCourseNormalizedName(stringUtils
                 .normalizeString(courseInputDTO.getCourseName()));
         return courseRepository.save(course);
+        } catch (Exception e) {
+            String errorMessage =
+                    (e.getCause() != null && e.getCause().getCause().getMessage() != null) ? e.getCause().getCause().getMessage() : e.getMessage();
+            throw new IntegrityException(errorMessage);
+        }
     }
 
     @Transactional
@@ -89,7 +100,19 @@ public class CourseService {
         return courseRepository.findAll(pageable);
     }
 
+    @Transactional
+    public void delete(Long adminId) {
+        try {
+            courseRepository.deleteById(adminId);
+            courseRepository.flush();
+        } catch (EmptyResultDataAccessException e) {
+            throw new EmptyResultException(String.format("Curso de id %d não encontrado", adminId));
+        } catch (DataIntegrityViolationException e) {
+            throw new IntegrityException(String.format("Curso de id %d já está em uso", adminId));
+        }
+    }
+
     public Course findByIdOrFail(long courseId) {
-        return courseRepository.findById(courseId).orElseThrow(NoSuchElementException::new);
+        return courseRepository.findById(courseId).orElseThrow(() -> new NoSuchElementException("Elemento não encontrado"));
     }
 }

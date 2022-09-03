@@ -47,4 +47,11 @@ public class CursoController {
         Page<Course> courses = courseService.listCourses(page, perPage, isActive, searchName);
         return courseAssembler.toModel(courses);
     }
+
+    @DeleteMapping("/delete/{courseId}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @ApiOperation(value = "Remove um curso")
+    public void delete(@PathVariable Long courseId) {
+        courseService.delete(courseId);
+    }
 }
