@@ -8,6 +8,7 @@ import com.oficina.educacional.domain.exception.EmptyResultException;
 import com.oficina.educacional.domain.exception.IntegrityException;
 import com.oficina.educacional.domain.model.Course;
 import com.oficina.educacional.domain.repository.CourseRepository;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -29,15 +30,13 @@ import static com.oficina.educacional.domain.repository.CourseRepository.courseC
 import static com.oficina.educacional.domain.repository.CourseRepository.courseIsActive;
 
 @Service
+@AllArgsConstructor
 public class CourseService {
 
-    @Autowired
     private CourseRepository courseRepository;
 
-    @Autowired
     private CourseAssembler courseAssembler;
 
-    @Autowired
     private StringUtils stringUtils;
 
     @Transactional

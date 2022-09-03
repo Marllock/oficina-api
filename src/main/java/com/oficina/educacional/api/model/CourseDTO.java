@@ -6,7 +6,7 @@ import javax.validation.constraints.NotBlank;
 import java.io.Serializable;
 
 @Data
-public class CursoDTO implements Serializable {
+public class CourseDTO implements Serializable {
 
     private final Long cursoId;
 

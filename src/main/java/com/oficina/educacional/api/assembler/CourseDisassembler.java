@@ -1,6 +1,6 @@
 package com.oficina.educacional.api.assembler;
 
-import com.oficina.educacional.api.model.CursoDTO;
+import com.oficina.educacional.api.model.CourseDTO;
 import com.oficina.educacional.domain.model.Course;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,20 +11,20 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Component
-public class CursoDisassembler {
+public class CourseDisassembler {
 
     @Autowired
     private ModelMapper modelMapper;
 
-    public Course toModel(CursoDTO curso) {
+    public Course toModel(CourseDTO curso) {
         return modelMapper.map(curso, Course.class);
     }
 
-    public List<Course> toModel(List<CursoDTO> cursos) {
+    public List<Course> toModel(List<CourseDTO> cursos) {
         return cursos.stream().map(this::toModel).collect(Collectors.toList());
     }
 
-    public Page<Course> toModel(Page<CursoDTO> curso) {
+    public Page<Course> toModel(Page<CourseDTO> curso) {
         return curso.map(this::toModel);
     }
 }

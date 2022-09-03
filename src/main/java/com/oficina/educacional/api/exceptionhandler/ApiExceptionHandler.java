@@ -1,12 +1,7 @@
 package com.oficina.educacional.api.exceptionhandler;
 
-import java.util.List;
-import java.util.NoSuchElementException;
-import java.util.stream.Collectors;
-
-import javax.persistence.EntityNotFoundException;
-
 import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.exc.InvalidFormatException;
 import com.googlecode.flyway.core.util.ExceptionUtils;
 import com.oficina.educacional.domain.exception.BadRequestException;
 import com.oficina.educacional.domain.exception.EmptyResultException;
@@ -23,7 +18,9 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
-import com.fasterxml.jackson.databind.exc.InvalidFormatException;
+import javax.persistence.EntityNotFoundException;
+import java.util.NoSuchElementException;
+import java.util.stream.Collectors;
 
 @ControllerAdvice
 public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
