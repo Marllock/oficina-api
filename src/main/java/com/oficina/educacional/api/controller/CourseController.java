@@ -6,7 +6,7 @@ import com.oficina.educacional.api.model.input.CourseInputDTO;
 import com.oficina.educacional.api.model.input.CourseUpdateInputDTO;
 import com.oficina.educacional.domain.model.Course;
 import com.oficina.educacional.domain.service.CourseService;
-import io.swagger.annotations.ApiOperation;
+//import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
@@ -24,7 +24,7 @@ public class CourseController {
     @Autowired
     private CourseAssembler courseAssembler;
 
-    @ApiOperation(value = "Cria curso")
+//    @ApiOperation(value = "Cria curso")
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("")
     public CourseDTO createCourse(@RequestBody @Valid CourseInputDTO courseInputDTO) {
@@ -32,7 +32,7 @@ public class CourseController {
         return courseAssembler.toModel(course);
     }
 
-    @ApiOperation(value = "Atualiza curso")
+//    @ApiOperation(value = "Atualiza curso")
     @PutMapping("/{courseId}")
     public CourseDTO updateCourse(@PathVariable long courseId, @RequestBody @Valid CourseUpdateInputDTO courseUpdateInputDTO) {
 
@@ -40,7 +40,7 @@ public class CourseController {
         return courseAssembler.toModel(course);
     }
 
-    @ApiOperation(value = "Lista todos os curso paginado")
+//    @ApiOperation(value = "Lista todos os curso paginado")
     @GetMapping("")
     public Page<CourseDTO> listAllCourses(@RequestParam int page, @RequestParam int perPage,
                                           @RequestParam Boolean isActive, @RequestParam String searchName) {
@@ -50,7 +50,7 @@ public class CourseController {
 
     @DeleteMapping("/delete/{courseId}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    @ApiOperation(value = "Remove um curso")
+//    @ApiOperation(value = "Remove um curso")
     public void delete(@PathVariable Long courseId) {
         courseService.delete(courseId);
     }
