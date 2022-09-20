@@ -31,14 +31,14 @@ public class Course {
     @Column(name = "course_name")
     private String courseName;
 
-    @Pattern(regexp = "[A-Z]{2}\\d{2}[A-Z]")
-    @Column(name = "course_code")
-    private String courseCode;
-
     @NotBlank
     @Length(max = 25)
     @Column(name = "course_name_normalized")
     private String courseNormalizedName;
+
+    @Pattern(regexp = "[A-Z]{2}\\d{2}[A-Z]")
+    @Column(name = "course_code", unique = true)
+    private String courseCode;
 
     @CreationTimestamp
     @Column(name = "course_created_at")

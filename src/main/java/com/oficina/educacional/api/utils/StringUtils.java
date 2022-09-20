@@ -1,6 +1,5 @@
 package com.oficina.educacional.api.utils;
 
-import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 
 import java.text.Normalizer;

@@ -8,6 +8,7 @@ import com.oficina.educacional.domain.exception.EmptyResultException;
 import com.oficina.educacional.domain.exception.IntegrityException;
 import com.oficina.educacional.domain.model.Course;
 import com.oficina.educacional.domain.repository.CourseRepository;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -42,19 +43,12 @@ public class CourseService {
 
     @Transactional
     public Course create(@Valid CourseInputDTO courseInputDTO) {
-        try {
-
         Course course = new Course();
         BeanUtils.copyProperties(courseInputDTO, course);
         course.setCourseIsActive(true);
         course.setCourseNormalizedName(stringUtils
                 .normalizeString(courseInputDTO.getCourseName()));
         return courseRepository.save(course);
-        } catch (Exception e) {
-            String errorMessage =
-                    (e.getCause() != null && e.getCause().getCause().getMessage() != null) ? e.getCause().getCause().getMessage() : e.getMessage();
-            throw new IntegrityException(errorMessage);
-        }
     }
 
     @Transactional
@@ -101,14 +95,11 @@ public class CourseService {
     }
 
     @Transactional
-    public void delete(Long adminId) {
+    public void delete(Long courseId) {
         try {
-            courseRepository.deleteById(adminId);
-            courseRepository.flush();
+            courseRepository.deleteById(courseId);
         } catch (EmptyResultDataAccessException e) {
-            throw new EmptyResultException(String.format("Curso de id %d não encontrado", adminId));
-        } catch (DataIntegrityViolationException e) {
-            throw new IntegrityException(String.format("Curso de id %d já está em uso", adminId));
+            throw new EmptyResultException(String.format("Curso de id %d não encontrado", courseId));
         }
     }
 

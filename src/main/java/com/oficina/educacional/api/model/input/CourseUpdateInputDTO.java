@@ -1,11 +1,10 @@
 package com.oficina.educacional.api.model.input;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
-import javax.persistence.Column;
-import javax.validation.constraints.Pattern;
-
 @Data
+@AllArgsConstructor
 public class CourseUpdateInputDTO {
 
     private String courseName;
