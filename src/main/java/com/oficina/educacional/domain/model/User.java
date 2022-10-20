@@ -1,5 +1,6 @@
 package com.oficina.educacional.domain.model;
 
+import com.oficina.educacional.domain.model.enums.ProfileTypeEnum;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
@@ -82,11 +83,17 @@ public class User {
     private String userCountry;
 
     @Column(name = "user_profile")
-    private String userProfile;
+    private long userProfile;
 
     @CreationTimestamp
     @Column(name = "user_created_at")
     private LocalDateTime userCreatedAt;
 
+    public ProfileTypeEnum getUserProfileType() {
+        return ProfileTypeEnum.valueOf(userProfile);
+    }
 
+    public void setUserProfileType(ProfileTypeEnum profileType) {
+        userProfile = profileType.getProfileTypeIdEnum();
+    }
 }

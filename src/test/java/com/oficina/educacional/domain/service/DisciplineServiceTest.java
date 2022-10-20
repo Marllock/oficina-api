@@ -1,5 +1,6 @@
 package com.oficina.educacional.domain.service;
 
+import com.oficina.educacional.api.model.input.DisciplineInputDTO;
 import com.oficina.educacional.api.model.input.DisciplineUpdateInputDTO;
 import com.oficina.educacional.domain.model.Course;
 import com.oficina.educacional.domain.model.Discipline;
