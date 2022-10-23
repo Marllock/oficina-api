@@ -1,17 +1,13 @@
 package com.oficina.educacional.domain.service;
 
-import com.oficina.educacional.api.assembler.CourseAssembler;
 import com.oficina.educacional.api.model.input.CourseInputDTO;
 import com.oficina.educacional.api.model.input.CourseUpdateInputDTO;
 import com.oficina.educacional.api.utils.StringUtils;
 import com.oficina.educacional.domain.exception.EmptyResultException;
-import com.oficina.educacional.domain.exception.IntegrityException;
 import com.oficina.educacional.domain.model.Course;
 import com.oficina.educacional.domain.repository.CourseRepository;
-import lombok.AllArgsConstructor;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -34,9 +30,6 @@ public class CourseService {
 
     @Autowired
     private CourseRepository courseRepository;
-
-    @Autowired
-    private CourseAssembler courseAssembler;
 
     @Autowired
     private StringUtils stringUtils;
