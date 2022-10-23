@@ -6,18 +6,19 @@ import com.oficina.educacional.domain.exception.EmptyResultException;
 import com.oficina.educacional.domain.model.Course;
 import com.oficina.educacional.domain.repository.CourseRepository;
 import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.Page;
-import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.jdbc.Sql;
 
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
+@TestPropertySource("/application-test.properties")
 @SpringBootTest
-class CourseServiceTest {
+class CourseServiceIntegrationTest {
 
     @Autowired
     private CourseService courseService;
@@ -40,7 +41,7 @@ class CourseServiceTest {
     }
 
     @DisplayName("Testar atualização de curso")
-    @Sql("/insertData.sql")
+    @Sql("/insertCourseData.sql")
     @Test
     public void shouldUpdateCourse() {
         CourseUpdateInputDTO courseUpdateInputDTO = new CourseUpdateInputDTO("teste 2", true, "AS32C");
@@ -53,7 +54,7 @@ class CourseServiceTest {
     }
 
     @DisplayName("Testar listagem de cursos ativos")
-    @Sql("/insertData.sql")
+    @Sql("/insertCourseData.sql")
     @Test
     public void shouldListActiveCourses() {
         Page<Course> courses = courseService.listCourses(0, 10, true, "");
@@ -62,7 +63,7 @@ class CourseServiceTest {
     }
 
     @DisplayName("Testar listagem de cursos inativos")
-    @Sql("/insertData.sql")
+    @Sql("/insertCourseData.sql")
     @Test
     public void shouldListInactiveCourses() {
         Page<Course> courses = courseService.listCourses(0, 10, false, "");
@@ -71,7 +72,7 @@ class CourseServiceTest {
     }
 
     @DisplayName("Testar listagem de cursos com nome")
-    @Sql("/insertData.sql")
+    @Sql("/insertCourseData.sql")
     @Test
     public void shouldListCoursesWithSearchName() {
         Page<Course> courses = courseService.listCourses(0, 10, null, "curso");
@@ -80,15 +81,23 @@ class CourseServiceTest {
     }
 
     @DisplayName("Testar listagem de cursos sem filtro")
-    @Sql("/insertData.sql")
+    @Sql("/insertCourseData.sql")
     @Test
     public void shouldListCoursesWithoutFilter() {
         Page<Course> courses = courseService.listCourses(0, 10, null, "");
         assertThat(courses).hasSize(4);
     }
 
+    @DisplayName("Testar listagem de cursos com todos os filtro")
+    @Sql("/insertCourseData.sql")
+    @Test
+    public void shouldListCoursesWithAllFilter() {
+        Page<Course> courses = courseService.listCourses(0, 10, true, "curso");
+        assertThat(courses).hasSize(3);
+    }
+
     @DisplayName("Testar exclusão de curso")
-    @Sql("/insertData.sql")
+    @Sql("/insertCourseData.sql")
     @Test
     public void shouldDeleteCourseById() {
         courseService.delete(1L);
@@ -96,9 +105,11 @@ class CourseServiceTest {
     }
 
     @DisplayName("Testar exceção ao excluir curos")
-    @Sql("/insertData.sql")
+    @Sql("/insertCourseData.sql")
     @Test
     public void shouldThrowExceptionOnDeleteCourseById() {
-        assertThatThrownBy(() -> courseService.delete(5L)).isInstanceOf(EmptyResultException.class);
+        assertThatThrownBy(() -> courseService.delete(5L))
+                .isInstanceOf(EmptyResultException.class)
+                .hasMessage("Curso de id 5 não encontrado");
     }
 }

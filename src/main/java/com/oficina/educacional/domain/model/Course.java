@@ -36,6 +36,7 @@ public class Course {
     @Column(name = "course_name_normalized")
     private String courseNormalizedName;
 
+    @NotBlank
     @Pattern(regexp = "[A-Z]{2}\\d{2}[A-Z]")
     @Column(name = "course_code", unique = true)
     private String courseCode;

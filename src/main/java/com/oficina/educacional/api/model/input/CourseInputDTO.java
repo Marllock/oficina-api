@@ -13,11 +13,9 @@ import javax.validation.constraints.Pattern;
 public class CourseInputDTO {
 
     @NotBlank
-//    @ApiModelProperty(example = "Introdução a Análise de Sistemas")
     private String courseName;
 
     @NotBlank
     @Pattern(regexp = "[A-Z]{2}\\d{2}[A-Z]")
-//    @ApiModelProperty(example = "AS31B")
     private String courseCode;
 }

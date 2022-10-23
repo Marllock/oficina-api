@@ -1,18 +1,21 @@
 package com.oficina.educacional.api.model;
 
-import lombok.Data;
+import lombok.*;
 
 import javax.validation.constraints.NotBlank;
 import java.io.Serializable;
 
-@Data
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class CourseDTO implements Serializable {
 
-    private final Long cursoId;
+    private Long courseId;
 
     @NotBlank
-    private final String name;
+    private String courseName;
 
     @NotBlank
-    private final String normalizedName;
+    private String courseNormalizedName;
 }

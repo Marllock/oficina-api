@@ -16,15 +16,15 @@ public class CourseDisassembler {
     @Autowired
     private ModelMapper modelMapper;
 
-    public Course toModel(CourseDTO curso) {
-        return modelMapper.map(curso, Course.class);
+    public Course toModel(CourseDTO course) {
+        return modelMapper.map(course, Course.class);
     }
 
-    public List<Course> toModel(List<CourseDTO> cursos) {
-        return cursos.stream().map(this::toModel).collect(Collectors.toList());
+    public List<Course> toModel(List<CourseDTO> courses) {
+        return courses.stream().map(this::toModel).collect(Collectors.toList());
     }
 
-    public Page<Course> toModel(Page<CourseDTO> curso) {
-        return curso.map(this::toModel);
+    public Page<Course> toModel(Page<CourseDTO> course) {
+        return course.map(this::toModel);
     }
 }

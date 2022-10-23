@@ -8,5 +8,5 @@ import lombok.Setter;
 public class DisciplineInputDTO {
     private String disciplineCode;
     private String disciplineName;
-    private long courseId;
+    private Long courseId;
 }

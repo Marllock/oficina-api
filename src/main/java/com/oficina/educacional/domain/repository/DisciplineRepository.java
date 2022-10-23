@@ -24,7 +24,7 @@ public interface DisciplineRepository extends JpaRepository<Discipline, Long>, J
             if(!disciplineCode.isBlank()) {
                 predicates.add(cb.equal(root.get("disciplineCode"), disciplineCode));
             }
-            if(courseId != 0) {
+            if(courseId != 0L) {
                 predicates.add(cb.equal(root.get("courseId"), courseId));
             }
             return cb.and(predicates.toArray(new Predicate[0]));

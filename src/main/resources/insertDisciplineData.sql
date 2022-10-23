@@ -1,0 +1,4 @@
+insert into discipline (discipline_id, discipline_code, discipline_name, discipline_normalized_name, course_id) values (1, '123', 'teste', 'teste', 1)
+insert into discipline (discipline_id, discipline_code, discipline_name, discipline_normalized_name, course_id) values (2, '1234', 'teste1', 'teste1', 1)
+insert into discipline (discipline_id, discipline_code, discipline_name, discipline_normalized_name, course_id) values (3, '1235', 'teste2', 'teste2', 1)
+insert into discipline (discipline_id, discipline_code, discipline_name, discipline_normalized_name, course_id) values (4, '1236', 'teste3', 'teste3', 1)
