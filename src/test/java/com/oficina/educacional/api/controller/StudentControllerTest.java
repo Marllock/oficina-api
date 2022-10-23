@@ -6,24 +6,4 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class StudentControllerTest {
-
-    @BeforeEach
-    void setUp() {
-    }
-
-    @Test
-    void create() {
-    }
-
-    @Test
-    void index() {
-    }
-
-    @Test
-    void show() {
-    }
-
-    @Test
-    void delete() {
-    }
 }

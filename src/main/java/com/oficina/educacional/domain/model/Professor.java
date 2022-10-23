@@ -4,25 +4,24 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Getter
 @Setter
 @Table(name = "professor")
-public class Professor extends User {
+public class Professor {
 
     @Id
-    @Column(name = "professor_id")
     private long professorId;
 
     @MapsId
-    @OneToOne(mappedBy = "professor")
+    @OneToOne
     @JoinColumn(name = "user_id")
     private User user;
 
+    @NotNull
     @ManyToOne
     @JoinColumn(name = "professor_course_id", nullable = false)
     private Course professorCourse;
-
-
 }

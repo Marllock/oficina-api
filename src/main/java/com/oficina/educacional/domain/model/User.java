@@ -36,9 +36,9 @@ public class User {
     @Email
     private String userEmail;
 
-    @Column(name = "userCPF", unique = true)
+    @Column(name = "user_document", unique = true)
     @NotNull
-    private String userCPF;
+    private String userDocument;
 
     @Column(name = "user_birth_date")
     @NotNull
@@ -47,6 +47,7 @@ public class User {
     @Column(name = "user_gender_description")
     private String userGenderDescription;//enum
 
+    @NotNull
     @Column(name = "user_telephone")
     private String userTelephone;
 
@@ -68,7 +69,7 @@ public class User {
 
     @Column(name = "user_zipcode")
     @NotNull
-    private String userZipcode;
+    private String userZipCode;
 
     @Column(name = "user_city")
     @NotNull
@@ -78,12 +79,11 @@ public class User {
     @NotNull
     private String userState;
 
-    @Column(name = "user_country")
-    @NotNull
-    private String userCountry;
-
     @Column(name = "user_profile")
     private long userProfile;
+
+    @Column(name = "user_is_active")
+    private boolean userIsActive;
 
     @CreationTimestamp
     @Column(name = "user_created_at")

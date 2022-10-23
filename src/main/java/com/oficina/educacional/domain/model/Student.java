@@ -1,7 +1,5 @@
 package com.oficina.educacional.domain.model;
 
-
-
 import lombok.Getter;
 import lombok.Setter;
 
@@ -20,11 +18,11 @@ public class Student {
     private long studentId;
 
     @MapsId
-    @OneToOne(mappedBy = "student")
+    @OneToOne
     @JoinColumn(name = "user_id")
     private User user;
 
-    @OneToMany(mappedBy = "discipline")
+    @OneToMany
     private List<Discipline> studentDisciplines;
 
     @ManyToOne

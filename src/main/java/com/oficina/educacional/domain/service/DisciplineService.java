@@ -35,8 +35,9 @@ public class DisciplineService {
     public Page<Discipline> index(int perPage, int page, String disciplineName,
                                   String disciplineCode, long courseId) {
 
+
         Pageable pageable = PageRequest.of(page, perPage);
-        return disciplineRepository.findAll(DisciplineRepository.index(disciplineName, disciplineCode,
+        return disciplineRepository.findAll(DisciplineRepository.index(stringUtils.normalizeString(disciplineName), disciplineCode,
                 courseId), pageable);
     }
 
@@ -44,20 +45,19 @@ public class DisciplineService {
     public Discipline update(DisciplineInputDTO disciplineInputDTO, long disciplineId) {
         Discipline disciplineToUpdate = disciplineRepository.findById(disciplineId).orElseThrow(NoSuchElementException::new);
 
-        if (!disciplineInputDTO.getDisciplineName().isBlank()){
+        if (Objects.nonNull(disciplineInputDTO.getDisciplineName())){
             disciplineToUpdate.setDisciplineName(disciplineInputDTO.getDisciplineName());
             disciplineToUpdate.setDisciplineNormalizedName(stringUtils.normalizeString(disciplineInputDTO.getDisciplineName()));
         }
 
-        if (!disciplineInputDTO.getDisciplineCode().isBlank()) {
+        if (Objects.nonNull(disciplineInputDTO.getDisciplineCode())) {
             disciplineToUpdate.setDisciplineCode(disciplineInputDTO.getDisciplineCode());
         }
 
-        if (disciplineInputDTO.getCourseId() != 0){
+        if (Objects.nonNull(disciplineInputDTO.getCourseId())){
             Course course = courseService.findByIdOrFail(disciplineInputDTO.getCourseId());
             disciplineToUpdate.setCourseId(course);
         }
-
         return disciplineRepository.save(disciplineToUpdate);
     }
 

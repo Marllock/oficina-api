@@ -33,9 +33,9 @@ public class DisciplineController {
     }
 
     @GetMapping
-    public Page<DisciplineDTO> index(@RequestParam int perPage, @RequestParam int page,
-                                     @RequestParam String disciplineName, @RequestParam String disciplineCode,
-                                     @RequestParam long courseId) {
+    public Page<DisciplineDTO> index(@RequestParam(defaultValue = "10") int perPage, @RequestParam(defaultValue = "1") int page,
+                                     @RequestParam(defaultValue = "") String disciplineName, @RequestParam(defaultValue = "") String disciplineCode,
+                                     @RequestParam(defaultValue = "0") long courseId) {
 
         return disciplineAssembler.toModel(disciplineService.index(perPage, page, disciplineName, disciplineCode, courseId));
     }
