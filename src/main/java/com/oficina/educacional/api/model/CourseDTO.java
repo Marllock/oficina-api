@@ -8,7 +8,6 @@ import java.io.Serializable;
 @Getter
 @Setter
 @NoArgsConstructor
-@AllArgsConstructor
 public class CourseDTO implements Serializable {
 
     private Long courseId;

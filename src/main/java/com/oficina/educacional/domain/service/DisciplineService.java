@@ -2,6 +2,7 @@ package com.oficina.educacional.domain.service;
 
 import com.oficina.educacional.api.model.input.DisciplineInputDTO;
 import com.oficina.educacional.api.utils.StringUtils;
+import com.oficina.educacional.domain.exception.EmptyResultException;
 import com.oficina.educacional.domain.model.Course;
 import com.oficina.educacional.domain.model.Discipline;
 import com.oficina.educacional.domain.repository.DisciplineRepository;
@@ -29,7 +30,11 @@ public class DisciplineService {
 
     @Transactional
     public void delete(long disciplineId) {
-        disciplineRepository.deleteById(disciplineId);
+        try{
+            disciplineRepository.deleteById(disciplineId);
+        } catch( EmptyResultException e) {
+            throw new EmptyResultException(String.format("Disciplina de id %d não encontrado", disciplineId));
+        }
     }
 
     public Page<Discipline> index(int perPage, int page, String disciplineName,
@@ -74,5 +79,9 @@ public class DisciplineService {
         disciplineToCreate.setCourseId(course);
 
         return disciplineRepository.save(disciplineToCreate);
+    }
+
+    public Discipline show(long disciplineId) {
+        return disciplineRepository.findById(disciplineId).orElseThrow(NoSuchElementException::new);
     }
 }

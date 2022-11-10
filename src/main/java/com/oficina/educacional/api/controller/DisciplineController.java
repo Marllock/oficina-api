@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 
 @RestController
-@RequestMapping(value = "/discipline")
 public class DisciplineController {
 
     @Autowired
@@ -22,17 +21,17 @@ public class DisciplineController {
     @Autowired
     private DisciplineAssembler disciplineAssembler;
 
-    @PostMapping
+    @PostMapping("/v1/discipline")
     public DisciplineDTO create(@RequestBody @Valid DisciplineInputDTO disciplineInputDTO) {
         return disciplineAssembler.toModel(disciplineService.create(disciplineInputDTO));
     }
 
-    @PutMapping("/{disciplineId}")
+    @PutMapping("/v1/discipline/{disciplineId}")
     public DisciplineDTO update(@RequestBody @Valid DisciplineInputDTO disciplineInputDTO, @PathVariable long disciplineId) {
         return disciplineAssembler.toModel(disciplineService.update(disciplineInputDTO, disciplineId));
     }
 
-    @GetMapping
+    @GetMapping("/v1/discipline")
     public Page<DisciplineDTO> index(@RequestParam(defaultValue = "10") int perPage, @RequestParam(defaultValue = "1") int page,
                                      @RequestParam(defaultValue = "") String disciplineName, @RequestParam(defaultValue = "") String disciplineCode,
                                      @RequestParam(defaultValue = "0") long courseId) {
@@ -40,7 +39,12 @@ public class DisciplineController {
         return disciplineAssembler.toModel(disciplineService.index(perPage, page, disciplineName, disciplineCode, courseId));
     }
 
-    @DeleteMapping("/{disciplineId}")
+    @GetMapping("/v1/discipline/{disciplineId}")
+    public ResponseEntity<DisciplineDTO> show(@PathVariable long disciplineId) {
+        return ResponseEntity.ok(disciplineAssembler.toModel(disciplineService.show(disciplineId)));
+    }
+
+    @DeleteMapping("/v1/discipline/{disciplineId}")
     public ResponseEntity<String> delete(@PathVariable long disciplineId) {
         return new ResponseEntity<>("Discipline deleted successfully", HttpStatus.NO_CONTENT);
     }

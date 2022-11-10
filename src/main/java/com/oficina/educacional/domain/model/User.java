@@ -29,7 +29,7 @@ public class User {
 
     @Column(name = "user_normalized_name")
     @NotNull
-    private String userNormalized_name;
+    private String userNormalizedName;
 
     @Column(name = "user_email", unique = true)
     @NotNull
@@ -43,9 +43,6 @@ public class User {
     @Column(name = "user_birth_date")
     @NotNull
     private LocalDate userBirthDate;
-
-    @Column(name = "user_gender_description")
-    private String userGenderDescription;//enum
 
     @NotNull
     @Column(name = "user_telephone")
