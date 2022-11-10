@@ -7,7 +7,6 @@ import lombok.Setter;
 
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
 public class Address {
 
@@ -15,7 +14,7 @@ public class Address {
     private String userStreetNumber;
     private String userComplement;
     private String userDistrict;
-    private String userZipcode;
+    private String userZipCode;
     private String userState;
     private String userCity;
 }

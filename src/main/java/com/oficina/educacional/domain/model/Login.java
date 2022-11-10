@@ -14,6 +14,7 @@ import javax.validation.constraints.NotNull;
 public class Login {
 
     @Id
+    @Column(name = "login_id")
     private long loginId;
 
     @MapsId

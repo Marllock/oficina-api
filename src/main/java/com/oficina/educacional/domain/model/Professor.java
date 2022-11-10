@@ -1,10 +1,13 @@
 package com.oficina.educacional.domain.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
@@ -22,6 +25,10 @@ public class Professor {
 
     @NotNull
     @ManyToOne
-    @JoinColumn(name = "professor_course_id", nullable = false)
+    @JoinColumn(name = "course_id", nullable = false)
     private Course professorCourse;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "classProfessor")
+    private List<Class> professorClasses = new ArrayList<>();
 }

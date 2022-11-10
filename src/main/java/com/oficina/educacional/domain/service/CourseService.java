@@ -87,6 +87,10 @@ public class CourseService {
         return courseRepository.findAll(pageable);
     }
 
+    public Course show(long courseId) {
+        return courseRepository.findById(courseId).orElseThrow(NoSuchElementException::new);
+    }
+
     @Transactional
     public void delete(Long courseId) {
         try {

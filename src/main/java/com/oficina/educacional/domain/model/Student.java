@@ -5,7 +5,9 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -22,10 +24,10 @@ public class Student {
     @JoinColumn(name = "user_id")
     private User user;
 
-    @OneToMany
-    private List<Discipline> studentDisciplines;
-
     @ManyToOne
-    @JoinColumn(name = "studentCourse")
+    @JoinColumn(name = "course_id")
     private Course studentCourse;
+
+    @OneToMany(mappedBy = "student")
+    private Set<Grades> studentGrades = new HashSet<>();
 }
