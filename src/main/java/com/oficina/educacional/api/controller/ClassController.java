@@ -7,6 +7,7 @@ import com.oficina.educacional.api.model.input.ClassUpdateInputDTO;
 import com.oficina.educacional.domain.service.ClassService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -25,14 +26,14 @@ public class ClassController {
     }
 
     @PutMapping("v1/class/{classId}")
-    public ClassDTO update(@PathVariable long classId, @RequestBody ClassUpdateInputDTO classUpdateInputDTO) {
-        return classAssembler.toModel(classService.update(classUpdateInputDTO));
+    public ClassDTO update(@PathVariable long classId, @RequestBody ClassInputDTO classInputDTO) {
+        return classAssembler.toModel(classService.update(classInputDTO, classId));
     }
 
     @GetMapping("v1/class")
-    public Page<ClassDTO> index(@RequestParam int page, @RequestParam int perPage, @RequestParam String classCode,
-                                @RequestParam boolean isActive, @RequestParam long courseId, @RequestParam long professorId) {
-        return classAssembler.toModel(classService.index(page, perPage, classCode, isActive, courseId, professorId));
+    public Page<ClassDTO> index(@RequestParam int page, @RequestParam int perPage, @RequestParam boolean isActive,
+                                @RequestParam long courseId, @RequestParam long professorId) {
+        return classAssembler.toModel(classService.index(page, perPage, isActive, courseId, professorId));
     }
 
     @GetMapping("v1/class/{classId}")
@@ -44,6 +45,6 @@ public class ClassController {
 public ResponseEntity<?> delete(@PathVariable long classId) {
         classService.delete(classId);
 
-        return ResponseEntity.ok("Delete with Success");
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).body("Delete with Success");
     }
 }

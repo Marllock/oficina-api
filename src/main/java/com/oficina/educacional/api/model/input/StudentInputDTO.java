@@ -1,4 +1,10 @@
 package com.oficina.educacional.api.model.input;
 
-public class StudentInputDTO {
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
+public class StudentInputDTO extends UserInputDTO {
+    private long courseId;
 }

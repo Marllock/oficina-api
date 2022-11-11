@@ -143,7 +143,7 @@ public class ProfessorServiceUnitTest {
         when(courseService.findByIdOrFail(anyLong())).thenReturn(course);
         when(professorRepository.save(any(Professor.class))).thenReturn(professor);
 
-        assertThat(professorService.update(professorUpdateInputDTO).getUser().getUserName()).isEqualTo("teste");
+        assertThat(professorService.update(professorUpdateInputDTO, 1).getUser().getUserName()).isEqualTo("teste");
 
     }
 

@@ -9,8 +9,8 @@ import java.util.UUID;
 @Setter
 @Getter
 @Entity
-@Table(name = "grades")
-public class Grades {
+@Table(name = "grade")
+public class Grade {
 
     @EmbeddedId
     private ClassStudentsKey gradeId;
