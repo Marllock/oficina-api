@@ -66,9 +66,7 @@ public class DisciplineServiceUnitTest {
 
         when(courseService.findByIdOrFail(anyLong())).thenThrow(new NoSuchElementException("Elemento não encontrado"));
 
-        assertThatThrownBy(() -> {
-            disciplineService.create(disciplineInputDTO);
-        }).isInstanceOf(NoSuchElementException.class).hasMessage("Elemento não encontrado");
+        assertThatThrownBy(() -> disciplineService.create(disciplineInputDTO)).isInstanceOf(NoSuchElementException.class).hasMessage("Elemento não encontrado");
 
     }
 
@@ -89,9 +87,7 @@ public class DisciplineServiceUnitTest {
     void shouldFailOnDeleteDiscipline() {
         doThrow(EmptyResultException.class).when(disciplineRepository).deleteById(anyLong());
 
-        assertThatThrownBy(() -> {
-            disciplineService.delete(1L);
-        }).isInstanceOf(EmptyResultException.class).hasMessage("Disciplina de id 1 não encontrado");
+        assertThatThrownBy(() -> disciplineService.delete(1L)).isInstanceOf(EmptyResultException.class).hasMessage("Disciplina de id 1 não encontrado");
 
         verify(disciplineRepository, times(1)).deleteById(anyLong());
     }
@@ -148,9 +144,7 @@ public class DisciplineServiceUnitTest {
         when(disciplineRepository.findById(anyLong())).thenReturn(Optional.of(discipline));
         when(courseService.findByIdOrFail(anyLong())).thenThrow(NoSuchElementException.class);
 
-        assertThatThrownBy(() -> {
-            disciplineService.update(disciplineInputDTO, 1L);
-        }).isInstanceOf(NoSuchElementException.class);
+        assertThatThrownBy(() -> disciplineService.update(disciplineInputDTO, 1L)).isInstanceOf(NoSuchElementException.class);
     }
 
     @Order(7)
@@ -163,8 +157,6 @@ public class DisciplineServiceUnitTest {
         disciplineInputDTO.setCourseId(1L);
         when(disciplineRepository.findById(anyLong())).thenThrow(NoSuchElementException.class);
 
-        assertThatThrownBy(() -> {
-            disciplineService.update(disciplineInputDTO, 1L);
-        }).isInstanceOf(NoSuchElementException.class);
+        assertThatThrownBy(() -> disciplineService.update(disciplineInputDTO, 1L)).isInstanceOf(NoSuchElementException.class);
     }
 }

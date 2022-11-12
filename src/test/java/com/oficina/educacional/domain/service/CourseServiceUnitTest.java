@@ -120,9 +120,7 @@ public class CourseServiceUnitTest {
         course.setCourseIsActive(true);
         when(courseRepository.findById(anyLong())).thenThrow(new NoSuchElementException("Elemento não encontrado"));
 
-        assertThatThrownBy(() -> {
-            courseService.update(courseUpdateInputDTO, 1L);
-        })
+        assertThatThrownBy(() -> courseService.update(courseUpdateInputDTO, 1L))
                 .isInstanceOf(NoSuchElementException.class)
                 .hasMessage("Elemento não encontrado");
         verify(courseRepository, times(1)).findById(anyLong());
@@ -142,9 +140,7 @@ public class CourseServiceUnitTest {
     @Test
     void shouldNotDeleteCourses() {
         doThrow(new EmptyResultException("Curso de id 1 não encontrado")).when(courseRepository).deleteById(anyLong());
-        assertThatThrownBy(() -> {
-            courseService.delete(1L);
-        })
+        assertThatThrownBy(() -> courseService.delete(1L))
                 .isInstanceOf(EmptyResultException.class)
                 .hasMessage("Curso de id 1 não encontrado");
         verify(courseRepository, times(1)).deleteById(anyLong());

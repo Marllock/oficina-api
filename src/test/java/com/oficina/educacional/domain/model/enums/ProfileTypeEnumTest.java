@@ -19,9 +19,7 @@ class ProfileTypeEnumTest {
 
     @Test
     void shouldThrowIllegalArgumentException() {
-        assertThatThrownBy(() -> {
-            ProfileTypeEnum.valueOf(46732);
-        }).isInstanceOf(IllegalArgumentException.class)
+        assertThatThrownBy(() -> ProfileTypeEnum.valueOf(46732)).isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("Invalid id");
     }
 }

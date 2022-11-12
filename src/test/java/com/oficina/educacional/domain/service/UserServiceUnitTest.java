@@ -42,7 +42,7 @@ public class UserServiceUnitTest {
     }
 
     @Order(1)
-    @DisplayName("Testa Criação de usuario")
+    @DisplayName("Testa Criação de usuário")
     @Test
     void shouldCreateUser() {
         UserInputDTO userInputDTO = new UserInputDTO();
@@ -107,9 +107,7 @@ public class UserServiceUnitTest {
 
         when(userRepository.findById(anyLong())).thenThrow(new NoSuchElementException("User not found"));
 
-        assertThatThrownBy(() -> {
-            userService.update(1L, userUpdateInputDTO);
-        }).isInstanceOf(NoSuchElementException.class).hasMessage("User not found");
+        assertThatThrownBy(() -> userService.update(1L, userUpdateInputDTO)).isInstanceOf(NoSuchElementException.class).hasMessage("User not found");
     }
 
     @Order(4)
@@ -144,9 +142,7 @@ public class UserServiceUnitTest {
     void shouldFailOnDeleteUser() {
         doThrow(EmptyResultException.class).when(userRepository).deleteById(anyLong());
 
-        assertThatThrownBy(() -> {
-            userService.delete(1L);
-        }).isInstanceOf(EmptyResultDataAccessException.class);
+        assertThatThrownBy(() -> userService.delete(1L)).isInstanceOf(EmptyResultDataAccessException.class);
         verify(userRepository, times(1)).deleteById(anyLong());
     }
 }
