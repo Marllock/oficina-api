@@ -20,6 +20,7 @@ import static com.oficina.educacional.domain.repository.ProfessorRepository.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Objects;
 
 @Service
@@ -84,8 +85,8 @@ public class ProfessorService {
         return professorRepository.findAll(pageable);
     }
 
-    public Professor update(ProfessorUpdateInputDTO professorUpdateInputDTO) {
-        Professor professor = new Professor();
+    public Professor update(ProfessorUpdateInputDTO professorUpdateInputDTO, long professorId) {
+        Professor professor = professorRepository.findById(professorId).orElseThrow(NoSuchElementException::new);
         User user = new User();
         Course course = courseService.findByIdOrFail(professorUpdateInputDTO.getCourseId());
         professor.setProfessorCourse(course);
@@ -95,6 +96,10 @@ public class ProfessorService {
         BeanUtils.copyProperties(professorUpdateInputDTO, user);
         professor.setUser(user);
         return professorRepository.save(professor);
+    }
+
+    public Professor show(long professorId) {
+        return professorRepository.findById(professorId).orElseThrow(NoSuchElementException::new);
     }
 
     public void delete(long userId) {

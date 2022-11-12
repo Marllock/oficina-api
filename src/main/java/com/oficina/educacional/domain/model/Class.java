@@ -5,7 +5,6 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Getter
@@ -19,9 +18,6 @@ public class Class {
     @Column(name = "class_id")
     long classId;
 
-    @Column(name = "class_code")
-    private String classCode;
-
     @Column(name = "class_is_active")
     private boolean classIsActive;
 
@@ -34,5 +30,5 @@ public class Class {
     private Course classCourse;
 
     @OneToMany(mappedBy = "classModel")
-    private Set<Grades> classGrades = new HashSet<>();
+    private Set<Grade> classGrades = new HashSet<>();
 }
