@@ -1,7 +1,6 @@
 package com.oficina.educacional.domain.service;
 
 import com.oficina.educacional.api.model.input.ClassInputDTO;
-import com.oficina.educacional.api.model.input.ClassUpdateInputDTO;
 import com.oficina.educacional.domain.model.Class;
 import com.oficina.educacional.domain.model.Course;
 import com.oficina.educacional.domain.model.Professor;
@@ -13,7 +12,10 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.NoSuchElementException;
+import java.util.Objects;
 
 @Service
 public class ClassService {
@@ -26,6 +28,9 @@ public class ClassService {
 
     @Autowired
     private CourseService courseService;
+
+    @Autowired
+    private GradeService gradeService;
 
     public Class create(ClassInputDTO classInputDTO) {
         Class classModel = new Class();

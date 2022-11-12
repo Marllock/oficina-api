@@ -4,7 +4,6 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.UUID;
 
 @Setter
 @Getter
@@ -24,9 +23,6 @@ public class Grade {
     @MapsId("class_id")
     @JoinColumn(name = "class_id")
     private Class classModel;
-
-    @Column(name = "grade_code")
-    private UUID gradeCode = UUID.randomUUID();
 
     @Column(name = "grade_score")
     private double gradeScore;

@@ -3,7 +3,6 @@ package com.oficina.educacional.api.controller;
 import com.oficina.educacional.api.assembler.ClassAssembler;
 import com.oficina.educacional.api.model.ClassDTO;
 import com.oficina.educacional.api.model.input.ClassInputDTO;
-import com.oficina.educacional.api.model.input.ClassUpdateInputDTO;
 import com.oficina.educacional.domain.service.ClassService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;

@@ -27,9 +27,9 @@ public class GradeController {
         return gradeAssembler.toModel(gradeService.create(gradeInputDTO));
     }
 
-    @PutMapping("v1/grades/{gradeId}")
-    public GradeDTO update(@RequestBody @Valid GradeUpdateInputDTO gradeUpdateInputDTO, @PathVariable long gradeId){
-        return gradeAssembler.toModel(gradeService.update(gradeUpdateInputDTO, gradeId));
+    @PutMapping("v1/grades/update")
+    public GradeDTO update(@RequestBody @Valid GradeUpdateInputDTO gradeUpdateInputDTO){
+        return gradeAssembler.toModel(gradeService.update(gradeUpdateInputDTO));
     }
     
     @GetMapping("v1/grades")
@@ -39,12 +39,12 @@ public class GradeController {
     }
     
     @GetMapping("v1/grades/{gradeId}")
-    public GradeDTO show(@PathVariable long gradeId){
+    public GradeDTO show(@PathVariable String gradeId){
         return gradeAssembler.toModel(gradeService.show(gradeId));
     }
 
     @DeleteMapping("v1/grades/{gradeId}")
-    public ResponseEntity<String> delete(@PathVariable long gradeId) {
+    public ResponseEntity<String> delete(@PathVariable String gradeId) {
         gradeService.delete(gradeId);
 
         return ResponseEntity.status(HttpStatus.NO_CONTENT).body("Deleted with success");

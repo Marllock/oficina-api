@@ -14,7 +14,7 @@ import java.util.UUID;
 public class ClassStudentsKey implements Serializable {
 
     @Column(name = "grade_id")
-    private long gradeId;
+    private String gradeId = UUID.randomUUID().toString();
 
     @Column(name = "class_id")
     private long classId;

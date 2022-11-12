@@ -94,9 +94,7 @@ public class ProfessorServiceUnitTest {
 
         when(userService.create(any(UserInputDTO.class))).thenThrow(DataIntegrityViolationException.class);
 
-        assertThatThrownBy(() -> {
-            professorService.create(professorInputDTO);
-        }).isInstanceOf(DataIntegrityViolationException.class);
+        assertThatThrownBy(() -> professorService.create(professorInputDTO)).isInstanceOf(DataIntegrityViolationException.class);
     }
 
     @Order(3)
@@ -107,9 +105,7 @@ public class ProfessorServiceUnitTest {
 
         when(courseService.findByIdOrFail(anyLong())).thenThrow(NoSuchElementException.class);
 
-        assertThatThrownBy(() -> {
-            professorService.create(professorInputDTO);
-        }).isInstanceOf(NoSuchElementException.class);
+        assertThatThrownBy(() -> professorService.create(professorInputDTO)).isInstanceOf(NoSuchElementException.class);
     }
 
     @Order(4)
@@ -120,9 +116,7 @@ public class ProfessorServiceUnitTest {
 
         when(professorRepository.save(any(Professor.class))).thenThrow(DataIntegrityViolationException.class);
 
-        assertThatThrownBy(() -> {
-            professorService.create(professorInputDTO);
-        }).isInstanceOf(DataIntegrityViolationException.class);
+        assertThatThrownBy(() -> professorService.create(professorInputDTO)).isInstanceOf(DataIntegrityViolationException.class);
     }
 
     @Order(2)
@@ -167,9 +161,7 @@ public class ProfessorServiceUnitTest {
         doThrow(DataIntegrityViolationException.class).when(professorRepository).deleteById(anyLong());
         doNothing().when(userService).delete(anyLong());
 
-        assertThatThrownBy(() -> {
-            professorService.delete(1L);
-        }).isInstanceOf(DataIntegrityViolationException.class);
+        assertThatThrownBy(() -> professorService.delete(1L)).isInstanceOf(DataIntegrityViolationException.class);
     }
 
     @DisplayName("Testa falha deleção de professor")
@@ -178,8 +170,6 @@ public class ProfessorServiceUnitTest {
         doThrow(DataIntegrityViolationException.class).when(userService).delete(anyLong());
         doNothing().when(professorRepository).deleteById(anyLong());
 
-        assertThatThrownBy(() -> {
-            professorService.delete(1L);
-        }).isInstanceOf(DataIntegrityViolationException.class);
+        assertThatThrownBy(() -> professorService.delete(1L)).isInstanceOf(DataIntegrityViolationException.class);
     }
 }
