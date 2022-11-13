@@ -1,5 +1,6 @@
 package com.oficina.educacional.domain.model;
 
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -10,6 +11,7 @@ import java.util.UUID;
 
 @Getter
 @Setter
+@EqualsAndHashCode
 @Embeddable
 public class ClassStudentsKey implements Serializable {
 

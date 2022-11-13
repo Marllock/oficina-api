@@ -29,9 +29,6 @@ public class ClassService {
     @Autowired
     private CourseService courseService;
 
-    @Autowired
-    private GradeService gradeService;
-
     public Class create(ClassInputDTO classInputDTO) {
         Class classModel = new Class();
 
