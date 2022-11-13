@@ -1,17 +1,11 @@
-version: "3.0"
-networks:
-  oficina_network:
-    driver: bridge
-volumes:
-  db-data:
-    external: true
+version: "3"
 services:
   api:
     container_name: oficina-api
     environment:
-      - --spring.datasource.url=
-      - --spring.datasource.username=
-      - --spring.datasource.password=
+      - --spring.datasource.url=jdbc:postgresql://postgres:5432/oficina-1?serverTimezone=America/Sao_Paulo&useLegacyDatetimeCode=false
+      - --spring.datasource.username=teste
+      - --spring.datasource.password=teste
     build:
       context: .
       dockerfile: Dockerfile
@@ -21,19 +15,12 @@ services:
       - /app.jar
     ports:
       - "8080:8080"
-#    depends_on:
-#      - postgres
-    networks:
-      - oficina-network
-#  postgres:
-#    image: postgres:latest
-#    container_name: postgres-api
-#    environment:
-#      - POSTGRES_DB=
-#      - POSTGRES_USER=admin
-#      - POSTGRES_PASSWORD=admin
-#      - TZ=GMT
-#    networks:
-#      oficina_network:
-#    volumes:
-#      - db-data:./
+    depends_on:
+      - postgres
+  postgres:
+    image: postgres:latest
+    container_name: postgres-api
+    environment:
+      - POSTGRES_DB=oficina-1
+      - POSTGRES_USER=teste
+      - POSTGRES_PASSWORD=teste

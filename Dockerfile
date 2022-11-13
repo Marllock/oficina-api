@@ -1,15 +1,13 @@
-FROM maven:3-eclipse-temurin-18-alpine AS build
+FROM maven:3-eclipse-temurin-19-alpine AS build
 
-WORKDIR /home
+COPY src /home/app/src
+COPY pom.xml /home/app
+RUN mvn -f /home/app/pom.xml clean package -DskipTests
 
-COPY src ./src
-COPY pom.xml .
-RUN ./mvnw clean package
-
-FROM openjdk:18-jdk-alpine3.15
+FROM openjdk:19-jdk-alpine
 EXPOSE 8080
-COPY --from=build ./target/... app.jar
-ENTRYPOINT ["java", "-jar", "/app.jar", "--spring.datasource.url=", "--spring.datasource.username=", "--spring.datasource.password="]
+COPY --from=build /home/app/target/educational-0.0.1-SNAPSHOT.jar app.jar
+ENTRYPOINT ["java", "-jar", "/app.jar", "--spring.datasource.url=jdbc:postgresql://postgres:5432/oficina-1?serverTimezone=America/Sao_Paulo&useLegacyDatetimeCode=false", "--spring.datasource.username=teste", "--spring.datasource.password=teste"]
 
 
 

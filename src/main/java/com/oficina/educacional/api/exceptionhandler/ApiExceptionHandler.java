@@ -2,11 +2,11 @@ package com.oficina.educacional.api.exceptionhandler;
 
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.exc.InvalidFormatException;
-import com.googlecode.flyway.core.util.ExceptionUtils;
 import com.oficina.educacional.domain.exception.BadRequestException;
 import com.oficina.educacional.domain.exception.EmptyResultException;
 import com.oficina.educacional.domain.exception.IntegrityException;
 import com.oficina.educacional.domain.exception.UnauthorizedException;
+import org.flywaydb.core.internal.util.ExceptionUtils;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
