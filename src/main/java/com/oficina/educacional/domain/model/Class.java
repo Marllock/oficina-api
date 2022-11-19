@@ -13,11 +13,20 @@ import java.util.Set;
 @Table(name = "class")
 public class Class {
 
+    @Schema(
+        description = "Class unique identifier class_id",
+        example = "1",
+        required = true
+    )
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "class_id")
     long classId;
 
+    @Schema(
+        description = "Class status",
+        example = ""
+    )
     @Column(name = "class_is_active")
     private boolean classIsActive;
 

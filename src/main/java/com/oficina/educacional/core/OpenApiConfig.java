@@ -13,7 +13,7 @@ public class OpenApiConfig {
     public OpenAPI customCofiguration() {
         return new OpenAPI()
                 .components(new Components())
-                .info(new Info().title("Member API Docs")
-                        .description("Sample REST API documentation"));
+                .info(new Info().title("Oficina API Docs")
+                        .description("Educational Rest API"));
     }
 }
