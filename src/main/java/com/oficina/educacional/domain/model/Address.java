@@ -9,8 +9,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 @Setter
 @NoArgsConstructor
 public class Address {
-
-    @Schema(
+	@Schema(
         description = "User Street",
         example = "Rua Dos Andradas",
         required = true
