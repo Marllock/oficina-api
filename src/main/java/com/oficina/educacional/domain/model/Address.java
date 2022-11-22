@@ -1,12 +1,13 @@
 package com.oficina.educacional.domain.model;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @Setter
-~/oficina/back/test/oficina-api/src/java/com/oficina/educacional/domain/model/Address.java@NoArgsConstructor
+@NoArgsConstructor
 public class Address {
 	@Schema(
         description = "User Street",
