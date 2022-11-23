@@ -12,10 +12,19 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.ArraySchema;
+import io.swagger.v3.oas.annotations.media.Schema;
+
 import javax.validation.Valid;
 
 @RestController
 @RequestMapping("v1/professor")
+@Tag(name = "Professor", description = "professor controller")
 public class ProfessorController {
 
     @Autowired
@@ -24,28 +33,48 @@ public class ProfessorController {
     @Autowired
     private ProfessorService professorService;
 
+    @Operation(summary = "Create a Professor", description = "create professor", tags = "professor")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "successful operation", content = @Content(array = @ArraySchema(schema = @Schema(implementation = ProfessorDTO.class)))),
+    })
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("v1/professor")
     public ProfessorDTO create(@RequestBody @Valid ProfessorInputDTO professorInputDTO) {
         return professorAssembler.toModel(professorService.create(professorInputDTO));
     }
 
+    @Operation(summary = "Find all Professors", description = "find all professor with filters", tags = "professor")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "successful operation", content = @Content(array = @ArraySchema(schema = @Schema(implementation = ProfessorDTO.class)))),
+    })
     @GetMapping("v1/professor")
     public Page<ProfessorDTO> index(@RequestBody @Valid ProfessorSearchInputDTO professorSearchInputDTO) {
         return professorAssembler.toModel(professorService.index(professorSearchInputDTO));
     }
 
+    @Operation(summary = "Update a Professor", description = "update a professor", tags = "professor")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "successful operation", content = @Content(array = @ArraySchema(schema = @Schema(implementation = ProfessorDTO.class)))),
+    })
     @PutMapping("v1/professor/{professorId}")
     public ProfessorDTO update(@RequestBody @Valid ProfessorUpdateInputDTO professorUpdateInputDTO,
                                @RequestParam long professorId) {
         return professorAssembler.toModel(professorService.update(professorUpdateInputDTO, professorId));
     }
 
+    @Operation(summary = "Find one Professor", description = "Find one professor", tags = "professor")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "successful operation", content = @Content(array = @ArraySchema(schema = @Schema(implementation = ProfessorDTO.class)))),
+    })
     @GetMapping("v1/professor/{professorId}")
     public ProfessorDTO show(@PathVariable long professorId) {
         return professorAssembler.toModel(professorService.show(professorId));
     }
 
+    @Operation(summary = "Create a Professor", description = "create professor", tags = "professor")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "successful operation", content = @Content(array = @ArraySchema(schema = @Schema(implementation = String.class)))),
+    })
     @DeleteMapping("v1/professor/{professorId}")
     public ResponseEntity<String> delete(@PathVariable long professorId) {
         professorService.delete(professorId);
