@@ -37,7 +37,6 @@ public class StudentService {
         User user = userService.create(userInputDTO);
 
         Student student = new Student();
-        student.setStudentCode(UUID.randomUUID());
         student.setUser(user);
 
         Course course = courseService.findByIdOrFail(studentInputDTO.getCourseId());
