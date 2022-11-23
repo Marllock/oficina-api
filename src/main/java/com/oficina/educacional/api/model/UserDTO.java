@@ -3,12 +3,14 @@ package com.oficina.educacional.api.model;
 import lombok.Data;
 import java.time.LocalDate;
 
+import io.swagger.v3.oas.annotations.media.Schema;
+
 @Data
 public class UserDTO {
 
     @Schema(
-        description = "User entity unique identifier",
-        example = "1",
+        description = "User unique identifier",
+        example = "123",
         required = true
     )
     private long userId;
@@ -27,9 +29,16 @@ public class UserDTO {
     )
     private String userEmail;
 
-        @Schema(
-        description = "User telefone",
-        example = "22999303392",
+    @Schema(
+        description = "User birth date",
+        example = "02/03/2000",
+        required = true
+    )
+    private LocalDate userBirthdate;
+
+    @Schema(
+        description = "User telephone",
+        example = "(22)922354865",
         required = true
     )
     private String userTelephone;

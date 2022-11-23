@@ -16,7 +16,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.NoSuchElementException;
 import java.util.Objects;
-import java.util.UUID;
 
 @Service
 public class StudentService {
@@ -36,7 +35,6 @@ public class StudentService {
         User user = userService.create(userInputDTO);
 
         Student student = new Student();
-        student.setStudentCode(UUID.randomUUID());
         student.setUser(user);
 
         Course course = courseService.findByIdOrFail(studentInputDTO.getCourseId());

@@ -2,27 +2,28 @@ package com.oficina.educacional.api.model;
 
 import com.oficina.educacional.domain.model.Course;
 import com.oficina.educacional.domain.model.User;
-import lombok.Data;
+
 import io.swagger.v3.oas.annotations.media.Schema;
+import lombok.Data;
 
 @Data
 public class StudentDTO {
 
     @Schema(
         description = "Student unique identifier",
-        example = "1",
+        example = "12",
         required = true
     )
     private long studentId;
 
     @Schema(
-        description = "Student user related entity",
+        description = "Relation between Student and user",
         required = true
     )
     private User user;
 
     @Schema(
-        description = "Student course related entity",
+        description = "Relation between Student and course",
         required = true
     )
     private Course studentCourse;

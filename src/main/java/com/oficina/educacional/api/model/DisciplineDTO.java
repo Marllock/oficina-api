@@ -1,25 +1,26 @@
 package com.oficina.educacional.api.model;
 
 import com.oficina.educacional.domain.model.Course;
+
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 import org.hibernate.validator.constraints.Length;
 
 import javax.validation.constraints.NotBlank;
-import io.swagger.v3.oas.annotations.media.Schema;
 
 @Data
 public class DisciplineDTO {
 
     @Schema(
-        description = "Discipline entity uniqe identifier",
-        example = "1",
+        description = "Discipline unique identifier",
+        example = "123",
         required = true
     )
     private Long disciplineId;
 
     @Schema(
         description = "Discipline code",
-        example = "AS31C",
+        example = "AS31A",
         required = true
     )
     @NotBlank
@@ -39,14 +40,14 @@ public class DisciplineDTO {
         description = "Discipline name normalized",
         example = "estrutura_de_dados",
         required = true
-        
+
     )
     @NotBlank
     @Length(max = 25)
     private String disciplineNameNormalized;
 
     @Schema(
-        description = "Discipline Course entity",
+        description = "Relation between course and discipline",
         required = true
     )
     private Course disciplineCourseId;

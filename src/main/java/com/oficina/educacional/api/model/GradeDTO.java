@@ -1,8 +1,8 @@
 package com.oficina.educacional.api.model;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Getter;
 import lombok.Setter;
-import io.swagger.v3.oas.annotations.media.Schema;
 
 @Getter
 @Setter
@@ -14,14 +14,14 @@ public class GradeDTO {
     )
     private String gradeId;
 
-        @Schema(
-        description = "Grade student related entity",
+    @Schema(
+        description = "Relation between student and grade",
         required = true
     )
     private StudentDTO gradeStudent;
 
-        @Schema(
-        description = "Grade class related entity",
+    @Schema(
+        description = "Relation between class and grade",
         required = true
     )
     private ClassDTO gradeClass;

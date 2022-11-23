@@ -2,8 +2,9 @@ package com.oficina.educacional.api.model;
 
 import com.oficina.educacional.domain.model.Course;
 import com.oficina.educacional.domain.model.User;
-import lombok.Data;
+
 import io.swagger.v3.oas.annotations.media.Schema;
+import lombok.Data;
 
 @Data
 public class ProfessorDTO {
@@ -15,14 +16,14 @@ public class ProfessorDTO {
     )
     private long professorId;
 
-        @Schema(
-        description = "Professor user related entity",
+    @Schema(
+        description = "Relation between professor and user",
         required = true
     )
     private User user;
 
-        @Schema(
-        description = "Professor course related entity",
+    @Schema(
+        description = "Relation between professor and course",
         required = true
     )
     private Course professorCourse;

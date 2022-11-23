@@ -2,9 +2,10 @@ package com.oficina.educacional.api.model;
 
 import com.oficina.educacional.domain.model.Course;
 import com.oficina.educacional.domain.model.Professor;
+
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Getter;
 import lombok.Setter;
-import io.swagger.v3.oas.annotations.media.Schema;
 
 @Getter
 @Setter
