@@ -21,17 +21,17 @@ public class CourseDTO implements Serializable {
     private Long courseId;
 
     @Schema(
-        description = "Course name",
-        example = "Ensino fundamental",
+        description = "Course entity name",
+        example = "Engenharia de Computação",
         required = true
     )
     @NotBlank
     private String courseName;
 
     @Schema(
-        description = "Name of course normalized",
-        example = "Ensino fundamental",
-        required = true
+        description = "Course entity name normalized",
+        example = "engenharia_de_computacao",
+        required = false
     )
     @NotBlank
     private String courseNormalizedName;

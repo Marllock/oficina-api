@@ -10,23 +10,22 @@ import lombok.Setter;
 @Getter
 @Setter
 public class ClassDTO {
+
     @Schema(
-        description = "Course of a class",
-        example = "Ensino fundamental",
+        description = "Class course entity",
         required = true
     )
     private Course classCourse;
 
     @Schema(
-        description = "Professor of that class",
-        example = "Ricardo",
+        description = "class professor entity",
         required = true
     )
     private Professor classProfessor;
 
     @Schema(
-        description = "Class status",
-        example = "active",
+        description = "class status",
+        example = "true",
         required = true
     )
     private boolean classIsActive;

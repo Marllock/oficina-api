@@ -4,6 +4,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import io.swagger.v3.oas.annotations.media.Schema;
 
 @Getter
 @Setter
@@ -20,7 +21,7 @@ public class Address {
         description = "User Street Number",
         example = "123",
         required = true
-    )    
+    )
     private String userStreetNumber;
 
     @Schema(

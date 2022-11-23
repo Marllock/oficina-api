@@ -26,9 +26,10 @@ public class DisciplineDTO {
     @NotBlank
     private String disciplineCode;
 
+
     @Schema(
-        description = "Name of discipline",
-        example = "Matemática",
+        description = "Discipline name",
+        example = "Estrutura de Dados",
         required = true
     )
     @NotBlank
@@ -36,9 +37,10 @@ public class DisciplineDTO {
     private String disciplineName;
 
     @Schema(
-        description = "Name of discipline normalized",
-        example = "Matemática",
+        description = "Discipline name normalized",
+        example = "estrutura_de_dados",
         required = true
+
     )
     @NotBlank
     @Length(max = 25)

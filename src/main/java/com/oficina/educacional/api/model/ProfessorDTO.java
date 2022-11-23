@@ -8,13 +8,14 @@ import lombok.Data;
 
 @Data
 public class ProfessorDTO {
+
     @Schema(
-        description = "professor unique identifier",
-        example = "123",
+        description = "Professor unique identifier",
+        example = "1",
         required = true
     )
     private long professorId;
-    
+
     @Schema(
         description = "Relation between professor and user",
         required = true

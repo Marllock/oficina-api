@@ -17,14 +17,14 @@ public class UserDTO {
 
     @Schema(
         description = "User name",
-        example = "Ricardo",
+        example = "Marcos Gomes",
         required = true
     )
     private String userName;
 
     @Schema(
-        description = "User e-mail",
-        example = "ricardo@gmail.com",
+        description = "User email",
+        example = "test@gmail.com",
         required = true
     )
     private String userEmail;
@@ -43,10 +43,10 @@ public class UserDTO {
     )
     private String userTelephone;
 
-    @Schema(
-        description = "Users profile level",
-        example = "Professor",
+        @Schema(
+        description = "User Profile Id",
+        example = "1",
         required = true
     )
-    private String userProfile;
+    private Long userProfile;
 }

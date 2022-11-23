@@ -7,10 +7,9 @@ import lombok.Setter;
 @Getter
 @Setter
 public class GradeDTO {
-
-    @Schema(
+        @Schema(
         description = "Grade unique identifier",
-        example = "123",
+        example = "1",
         required = true
     )
     private String gradeId;
