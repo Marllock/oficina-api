@@ -48,11 +48,7 @@ public class UserInputDTO {
     )
     private String userTelephone;
 
-    @Schema(
-        description = "Users address",
-        example = "Rua Joaquim Dias Castanho,981,Cornélio Procópio, Paraná,Do lado da UTFPR, 863000-000",
-        required = true
-    )
+    @Schema(implementation = Address.class)
     private Address userAddress;
     @Schema(
         description = "Users Profile level",

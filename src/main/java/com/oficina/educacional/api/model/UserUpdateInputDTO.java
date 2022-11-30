@@ -23,11 +23,7 @@ public class UserUpdateInputDTO {
     )
     private String userEmail;
 
-    @Schema(
-        description = "Users address",
-        example = "Rua Joaquim Dias Castanho, Londrina, Paraná, 86300-000, Ao lado da Utfpr",
-        required = true
-    )
+    @Schema(implementation = Address.class)
     private Address userAddress;
 
     @Schema(

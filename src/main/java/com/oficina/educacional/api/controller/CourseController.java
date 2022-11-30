@@ -56,7 +56,8 @@ public class CourseController {
     })
     @GetMapping("/v1/course")
     public Page<CourseDTO> listAllCourses(@RequestParam int page, @RequestParam int perPage,
-                                          @RequestParam Boolean isActive, @RequestParam String searchName) {
+                                          @RequestParam(required = false) Boolean isActive,
+                                          @RequestParam(required = false) String searchName) {
         return courseAssembler.toModel(courseService.listCourses(page, perPage, isActive, searchName));
     }
 
