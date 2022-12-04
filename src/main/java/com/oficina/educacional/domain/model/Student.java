@@ -28,27 +28,18 @@ public class Student {
     @Column(name = "student_id")
     private long studentId;
 
-    @Schema(
-        description = "Relation between user and student",
-        required = true
-    )
+    @Schema(implementation = User.class)
     @MapsId
     @OneToOne
     @JoinColumn(name = "user_id")
     private User user;
 
-    @Schema(
-        description = "Relation between student and course",
-        required = true
-    )
+    @Schema(implementation = Course.class)
     @ManyToOne
     @JoinColumn(name = "course_id")
     private Course studentCourse;
 
-    @Schema(
-        description = "List of students grade ",
-        required = true
-    )
+    @Schema(implementation = Grade.class)
     @JsonIgnore
     @OneToMany(mappedBy = "student")
     private Set<Grade> studentGrades = new HashSet<>();

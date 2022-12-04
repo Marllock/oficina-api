@@ -16,15 +16,9 @@ public class ProfessorDTO {
     )
     private long professorId;
 
-    @Schema(
-        description = "Relation between professor and user",
-        required = true
-    )
+    @Schema(implementation = User.class)
     private User user;
 
-    @Schema(
-        description = "Relation between professor and course",
-        required = true
-    )
+    @Schema(implementation = Course.class)
     private Course professorCourse;
 }

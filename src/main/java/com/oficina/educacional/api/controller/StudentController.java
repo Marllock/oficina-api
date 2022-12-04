@@ -59,8 +59,8 @@ public class StudentController {
     })
     @GetMapping("v1/student")
     Page<StudentDTO> index(@RequestParam int page, @RequestParam int perPage,
-            @RequestParam(required = false) Long courseId) {
-        return studentAssembler.toModel(studentService.index(page, perPage, courseId));
+            @RequestParam(required = false) Long courseId, @RequestParam(required = false) String studentName) {
+        return studentAssembler.toModel(studentService.index(page, perPage, courseId, studentName));
     }
 
     @Operation(summary = "Find one Student", description = "find one student", tags = "student")

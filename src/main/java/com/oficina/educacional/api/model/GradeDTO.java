@@ -14,15 +14,9 @@ public class GradeDTO {
     )
     private String gradeId;
 
-    @Schema(
-        description = "Relation between student and grade",
-        required = true
-    )
+    @Schema(implementation = StudentDTO.class)
     private StudentDTO gradeStudent;
 
-    @Schema(
-        description = "Relation between class and grade",
-        required = true
-    )
+    @Schema(implementation = ClassDTO.class)
     private ClassDTO gradeClass;
 }

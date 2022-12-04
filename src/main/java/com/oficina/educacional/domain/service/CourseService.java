@@ -74,7 +74,7 @@ public class CourseService {
             specifications.add(courseIsActive(isActive));
         }
 
-        if (!searchName.isBlank()) {
+        if (Objects.nonNull(searchName) && !searchName.isBlank()) {
             specifications.add(courseContainsName(stringUtils.normalizeString(searchName)));
         }
 

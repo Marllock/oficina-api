@@ -16,15 +16,9 @@ public class StudentDTO {
     )
     private long studentId;
 
-    @Schema(
-        description = "Relation between Student and user",
-        required = true
-    )
+    @Schema(implementation = User.class)
     private User user;
 
-    @Schema(
-        description = "Relation between Student and course",
-        required = true
-    )
+    @Schema(implementation = Course.class)
     private Course studentCourse;
 }

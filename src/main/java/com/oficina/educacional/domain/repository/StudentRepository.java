@@ -12,4 +12,8 @@ public interface StudentRepository extends JpaRepository<Student, Long>, JpaSpec
     static Specification<Student> course(long courseId) {
         return (root, query, criteriaBuilder) -> criteriaBuilder.equal(root.get("studentCourse"), courseId);
     }
+
+    static Specification<Student> name(String studentName) {
+        return (root, query, criteriaBuilder) -> criteriaBuilder.equal(root.get("user").get("userName"), studentName);
+    }
 }

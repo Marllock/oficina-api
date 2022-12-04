@@ -46,9 +46,6 @@ public class DisciplineDTO {
     @Length(max = 25)
     private String disciplineNameNormalized;
 
-    @Schema(
-        description = "Relation between course and discipline",
-        required = true
-    )
+    @Schema(implementation = Course.class)
     private Course disciplineCourseId;
 }
