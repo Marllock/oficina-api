@@ -11,16 +11,10 @@ import lombok.Setter;
 @Setter
 public class ClassDTO {
 
-    @Schema(
-        description = "Class course entity",
-        required = true
-    )
+    @Schema(implementation = Course.class)
     private Course classCourse;
 
-    @Schema(
-        description = "class professor entity",
-        required = true
-    )
+    @Schema(implementation = Professor.class)
     private Professor classProfessor;
 
     @Schema(

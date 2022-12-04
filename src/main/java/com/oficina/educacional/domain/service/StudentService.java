@@ -4,6 +4,7 @@ import com.oficina.educacional.api.model.input.StudentInputDTO;
 import com.oficina.educacional.api.model.input.StudentUpdateInputDTO;
 import com.oficina.educacional.api.model.input.UserInputDTO;
 import com.oficina.educacional.domain.model.Course;
+import com.oficina.educacional.domain.model.Professor;
 import com.oficina.educacional.domain.model.Student;
 import com.oficina.educacional.domain.model.User;
 import com.oficina.educacional.domain.repository.StudentRepository;
@@ -12,8 +13,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Objects;
 
@@ -43,11 +47,21 @@ public class StudentService {
         return studentRepository.save(student);
     }
 
-    public Page<Student> index(int page, int perPage, Long courseId) {
+    public Page<Student> index(int page, int perPage, Long courseId, String studentName) {
         Pageable pageable = PageRequest.of(page, perPage);
-
+        List<Specification<Student>> specifications = new ArrayList<>();
         if(Objects.nonNull(courseId)) {
-            return studentRepository.findAll(StudentRepository.course(courseId), pageable);
+            specifications.add(StudentRepository.course(courseId));
+        }
+
+        if (Objects.nonNull(studentName)) {
+            specifications.add(StudentRepository.name(studentName));
+        }
+        if (!specifications.isEmpty()) {
+            Specification<Student> where = Specification.where(specifications.get(0));
+            specifications.forEach(where::and);
+
+            return studentRepository.findAll(where, pageable);
         }
         return studentRepository.findAll(pageable);
     }
