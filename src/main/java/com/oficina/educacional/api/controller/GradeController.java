@@ -55,7 +55,7 @@ public class GradeController {
     })
     @GetMapping("v1/grades")
     public Page<GradeDTO> index(@RequestParam int page, @RequestParam int perPage,
-                                @RequestParam long studentId, @RequestParam long classId) {
+                                @RequestParam(required = false) Long studentId, @RequestParam(required = false) Long classId) {
         return gradeAssembler.toModel(gradeService.index(page, perPage, studentId, classId));
     }
     
