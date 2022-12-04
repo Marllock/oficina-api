@@ -48,7 +48,7 @@ public class GradeService {
         return gradeRepository.save(grade);
     }
 
-    public Page<Grade> index(int page, int perPage, long studentId, long classId) {
+    public Page<Grade> index(int page, int perPage, Long studentId, Long classId) {
         Pageable pageable = PageRequest.of(page, perPage);
         return gradeRepository.findAll(GradeRepository.filter(studentId, classId), pageable);
     }
