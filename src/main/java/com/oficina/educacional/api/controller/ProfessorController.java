@@ -23,7 +23,6 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import javax.validation.Valid;
 
 @RestController
-@RequestMapping("v1/professor")
 @Tag(name = "Professor", description = "professor controller")
 public class ProfessorController {
 
@@ -58,7 +57,7 @@ public class ProfessorController {
     })
     @PutMapping("v1/professor/{professorId}")
     public ProfessorDTO update(@RequestBody @Valid ProfessorUpdateInputDTO professorUpdateInputDTO,
-                               @RequestParam long professorId) {
+                               @PathVariable long professorId) {
         return professorAssembler.toModel(professorService.update(professorUpdateInputDTO, professorId));
     }
 
