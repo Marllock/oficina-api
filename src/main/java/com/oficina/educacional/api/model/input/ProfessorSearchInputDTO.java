@@ -14,20 +14,20 @@ public class ProfessorSearchInputDTO {
     @Schema(
         description = "User unique identifier",
         example = "123",
-        required = true
+        required = false
     )
     private Long userId;
 
     @Schema(
         description = "Course unique identifier",
         example = "123",
-        required = true
+        required = false
     )
     private Long courseId;
 
     @Schema(
         description = "Page",
-        example = "1",
+        example = "0",
         required = true
     )
     private int page;
@@ -42,35 +42,35 @@ public class ProfessorSearchInputDTO {
     @Schema(
         description = "Users name",
         example = "Ricardo",
-        required = true
+        required = false
     )
     private String userName;
 
     @Schema(
         description = "Users e-mail",
         example = "ricardo@gmail.com",
-        required = true
+        required = false
     )
     private String userEmail;
 
     @Schema(
         description = "Users city name",
         example = "Londrina",
-        required = true
+        required = false
     )
     private String userCity;
 
     @Schema(
         description = "Users state",
         example = "Paraná",
-        required = true
+        required = false
     )
     private String userState;
 
     @Schema(
         description = "Users profile level",
         example = "Professor",
-        required = true
+        required = false
     )
     private Long userProfile;
 }
