@@ -10,6 +10,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 @Getter
 @Setter
 @AllArgsConstructor
+@NoArgsConstructor
 public class CourseInputDTO {
 
     @NotBlank
