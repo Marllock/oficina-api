@@ -46,7 +46,7 @@ public class ProfessorController {
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "successful operation", content = @Content(array = @ArraySchema(schema = @Schema(implementation = ProfessorDTO.class)))),
     })
-    @PostMapping("v1/professor")
+    @GetMapping("v1/professor")
     public Page<ProfessorDTO> index(@RequestBody @Valid ProfessorSearchInputDTO professorSearchInputDTO) {
         return professorAssembler.toModel(professorService.index(professorSearchInputDTO));
     }
